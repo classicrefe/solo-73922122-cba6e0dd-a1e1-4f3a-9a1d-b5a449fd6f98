@@ -1,0 +1,16 @@
+services:
+  planner:
+    build: .
+    image: toll-repartition-planner:local
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_PATH: /data/repartition.db
+      MAX_STATIONS_PER_MANIFEST: "20000"
+      MAX_DP_CELLS: "4000000"
+    volumes:
+      - planner-data:/data
+    restart: unless-stopped
+
+volumes:
+  planner-data:
